@@ -754,6 +754,11 @@ img::-moz-selection {
   width: 60px; /* Ajusta el tamaño del ícono */
   height: 60px; /* Mantiene la proporción */
 }
+#whatsapp-button img:hover {
+  transform: scale(1.1); /* Aumenta el tamaño del ícono al pasar el mouse */
+  transition: transform 0.2s; /* Suaviza el efecto */
+}
+
 body {
   webkit-tap-highlight-color: #fed136;
 }
