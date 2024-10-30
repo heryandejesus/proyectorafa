@@ -229,13 +229,15 @@ header {
   background-image: url('../img/header-bg.jpg');
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-position: center center;
+  background-position: top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
   text-align: center;
-  color: white;
+  color: rgb(56, 55, 55);
+  object-fit: cover;
+  object-position: top;
 }
 header .intro-text {
   padding-top: 100px;
@@ -249,7 +251,7 @@ header .intro-text .intro-lead-in {
   margin-bottom: 25px;
 }
 header .intro-text .intro-heading {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Rock Salt', cursive;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 50px;
@@ -269,7 +271,7 @@ header .intro-text .intro-heading {
     margin-bottom: 25px;
   }
   header .intro-text .intro-heading {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 75px;
@@ -740,6 +742,17 @@ img::selection {
 }
 img::-moz-selection {
   background: transparent;
+}
+#whatsapp-button {
+  position: fixed;
+  bottom: 20px; /* Distancia desde la parte inferior */
+  right: 20px; /* Distancia desde la derecha */
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+#whatsapp-button img {
+  width: 60px; /* Ajusta el tamaño del ícono */
+  height: 60px; /* Mantiene la proporción */
 }
 body {
   webkit-tap-highlight-color: #fed136;

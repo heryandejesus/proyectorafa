@@ -208,6 +208,7 @@ header {
             }
             .intro-heading {
                 @include heading-font;
+                font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
                 font-weight: 700;
                 font-size: 75px;
                 line-height: 75px;
