@@ -31,3 +31,33 @@
     })
 
 })(jQuery); // End of use strict
+
+const slide = document.querySelector('.carousel-slide');
+const items = document.querySelectorAll('.carousel-item');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+
+let index = 0;
+
+function showSlide(i) {
+  if (i >= items.length) index = 0;
+  if (i < 0) index = items.length - 1;
+  slide.style.transform = `translateX(${-index * 100}%)`;
+}
+
+next.addEventListener('click', () => {
+  index++;
+  showSlide(index);
+});
+
+prev.addEventListener('click', () => {
+  index--;
+  showSlide(index);
+});
+
+// Auto slide
+setInterval(() => {
+  index++;
+  showSlide(index);
+}, 5000);
+
