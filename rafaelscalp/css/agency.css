@@ -199,7 +199,7 @@ fieldset[disabled] .btn-xl.active {
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    background-color: transparent;
+    background-color: #222222;
     padding: 25px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
@@ -225,60 +225,40 @@ fieldset[disabled] .btn-xl.active {
     font-size: 1.5em;
   }
 }
-header {
-  background-image: url('../img/header-bg.jpg');
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: top center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+
+/* Hero carrusel full height */
+.carousel,
+.carousel-inner,
+.carousel-inner .item {
+  height: 100vh; /* pantalla completa */
+}
+
+.carousel-slide {
+  position: relative;
   text-align: center;
-  color: rgb(56, 55, 55);
-  object-fit: cover;
-  object-position: top;
 }
-header .intro-text {
-  padding-top: 100px;
-  padding-bottom: 50px;
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* muestra toda la imagen sin recortar */
+  background-color: #000; /* opcional: bordes negros si sobra espacio */
 }
-header .intro-text .intro-lead-in {
-  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: italic;
-  font-size: 22px;
-  line-height: 22px;
-  margin-bottom: 25px;
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
 }
-header .intro-text .intro-heading {
-  font-family: 'Rock Salt', cursive;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 50px;
-  margin-bottom: 25px;
-}
-@media (min-width: 768px) {
-  header .intro-text {
-    padding-top: 300px;
-    padding-bottom: 200px;
-  }
-  header .intro-text .intro-lead-in {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: italic;
-    font-size: 40px;
-    line-height: 40px;
-    margin-bottom: 25px;
-  }
-  header .intro-text .intro-heading {
-    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 75px;
-    line-height: 75px;
-    margin-bottom: 50px;
-  }
-}
+
+
 #sobremi {
   padding: 60px 20px;
   background-color: #f9f9f9;

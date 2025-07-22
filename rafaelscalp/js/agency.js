@@ -32,32 +32,48 @@
 
 })(jQuery); // End of use strict
 
-const slide = document.querySelector('.carousel-slide');
-const items = document.querySelectorAll('.carousel-item');
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next');
-
+const track = document.getElementById("carouselTrack");
+const dots = document.querySelectorAll(".dot");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 let index = 0;
+let totalSlides = dots.length;
 
-function showSlide(i) {
-  if (i >= items.length) index = 0;
-  if (i < 0) index = items.length - 1;
-  slide.style.transform = `translateX(${-index * 100}%)`;
+// Cambiar slide
+function moveToSlide(i) {
+  index = (i + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${index * 100}%)`;
+  updateDots();
 }
 
-next.addEventListener('click', () => {
-  index++;
-  showSlide(index);
+// Actualiza los indicadores
+function updateDots() {
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
+// Auto deslizar
+let autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
+
+// Click en puntos
+dots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    clearInterval(autoSlide);
+    moveToSlide(Number(dot.dataset.index));
+    autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
+  });
 });
 
-prev.addEventListener('click', () => {
-  index--;
-  showSlide(index);
+// Flechas
+prevBtn.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  moveToSlide(index - 1);
+  autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
 });
 
-// Auto slide
-setInterval(() => {
-  index++;
-  showSlide(index);
-}, 5000);
+nextBtn.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  moveToSlide(index + 1);
+  autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
+});
 
