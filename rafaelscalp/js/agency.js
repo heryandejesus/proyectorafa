@@ -32,51 +32,7 @@
 
 })(jQuery); // End of use strict
 
-const track = document.getElementById("carouselTrack");
-const dots = document.querySelectorAll(".dot");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-let index = 0;
-let totalSlides = dots.length;
-
-// Cambiar slide
-function moveToSlide(i) {
-  index = (i + totalSlides) % totalSlides;
-  track.style.transform = `translateX(-${index * 100}%)`;
-  updateDots();
-}
-
-// Actualiza los indicadores
-function updateDots() {
-  dots.forEach(dot => dot.classList.remove("active"));
-  dots[index].classList.add("active");
-}
-
-// Auto deslizar
-let autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
-
-// Click en puntos
-dots.forEach(dot => {
-  dot.addEventListener("click", () => {
-    clearInterval(autoSlide);
-    moveToSlide(Number(dot.dataset.index));
-    autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
-  });
-});
-
-// Flechas
-prevBtn.addEventListener("click", () => {
-  clearInterval(autoSlide);
-  moveToSlide(index - 1);
-  autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
-});
-
-nextBtn.addEventListener("click", () => {
-  clearInterval(autoSlide);
-  moveToSlide(index + 1);
-  autoSlide = setInterval(() => moveToSlide(index + 1), 4000);
-});
-
+// JavaScript para el slider de la galería
 class GallerySlider {
     constructor() {
         this.track = document.getElementById('galleryTrack');
@@ -209,3 +165,97 @@ class GallerySlider {
 document.addEventListener('DOMContentLoaded', () => {
     new GallerySlider();
 });
+
+// JavaScript para controles del video
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('bgVideo');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const fitModeBtn = document.getElementById('fitModeBtn');
+    
+    let currentFitMode = 'cover';
+    const fitModes = ['cover', 'contain', 'fill'];
+
+    // Control de ajuste del video
+    fitModeBtn.addEventListener('click', function() {
+        const currentIndex = fitModes.indexOf(currentFitMode);
+        const nextIndex = (currentIndex + 1) % fitModes.length;
+        currentFitMode = fitModes[nextIndex];
+        
+        // Remover todas las clases de fit
+        video.classList.remove('fit-cover', 'fit-contain', 'fit-fill');
+        // Agregar la nueva clase
+        video.classList.add('fit-' + currentFitMode);
+        
+        // Actualizar el título del botón
+        const modeNames = {
+            'cover': 'Llenar pantalla',
+            'contain': 'Video completo',
+            'fill': 'Estirar video'
+        };
+        fitModeBtn.title = 'Modo: ' + modeNames[currentFitMode];
+    });
+
+    // Control de reproducción/pausa
+    playPauseBtn.addEventListener('click', function() {
+        if (video.paused) {
+            video.play();
+            playPauseBtn.textContent = '⏸️';
+            playPauseBtn.title = 'Pausar';
+        } else {
+            video.pause();
+            playPauseBtn.textContent = '▶️';
+            playPauseBtn.title = 'Reproducir';
+        }
+    });
+
+    // Control de sonido (mute/unmute)
+    muteBtn.addEventListener('click', function() {
+        if (video.muted) {
+            video.muted = false;
+            muteBtn.textContent = '🔊';
+            muteBtn.title = 'Silenciar';
+        } else {
+            video.muted = true;
+            muteBtn.textContent = '🔇';
+            muteBtn.title = 'Activar sonido';
+        }
+    });
+
+    // Manejo de errores del video
+    video.addEventListener('error', function() {
+        console.log('Error cargando el video, mostrando fallback');
+        document.querySelector('.video-fallback').style.display = 'block';
+    });
+
+    // Optimización: pausar video cuando no está visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    });
+
+    observer.observe(video);
+
+    // Smooth scroll para el botón CTA
+    document.querySelector('.cta-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#content').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Ajuste de altura en dispositivos móviles (para manejar las barras de navegación)
+function setVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setVH();
+window.addEventListener('resize', setVH);
+window.addEventListener('orientationchange', setVH);

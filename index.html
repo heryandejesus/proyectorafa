@@ -78,8 +78,8 @@
             <span class="sr-only">Toggle navigation</span> Menu
             <i class="fa fa-bars"></i>
           </button>
-          <a class="navbar-brand page-scroll" href="#page-top"
-            >Rafael Scalp Artist</a
+          <a class="navbar-brand page-scroll" href="#page-top">
+            <img src="rafaelscalp/img/logo/logo1.png" class="brand-logo"></a
           >
         </div>
 
@@ -113,33 +113,50 @@
       </div>
     </nav>
 
-   <!-- CARRUSEL HERO FULL SCREEN -->
-<div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-  <div class="carousel-inner">
-    <div class="item active carousel-slide">
-      <img src="rafaelscalp/img/procedimientos/efecto-rapado.jpg" alt="Slide 1">
-      <button class="btn btn-primary slide-btn">Ver más</button>
-    </div>
-    <div class="item carousel-slide">
-      <img src="https://via.placeholder.com/1200x675/7fbfff/ffffff?text=Foto+2" alt="Slide 2">
-      <button class="btn btn-primary slide-btn">Ver más</button>
-    </div>
-    <div class="item carousel-slide">
-      <img src="https://via.placeholder.com/1200x675/7fff7f/ffffff?text=Foto+3" alt="Slide 3">
-      <button class="btn btn-primary slide-btn">Ver más</button>
-    </div>
-  </div>
+    <!-- Header -->
+    <header class="video-header">
+        <!-- Video de fondo -->
+        <video class="video-bg" autoplay muted loop playsinline id="bgVideo">
+            <source src="rafaelscalp/video/cabecera.mp4" type="video/mp4">
+            <!-- Fallback para navegadores que no soportan el video -->
+            Tu navegador no soporta video HTML5.
+        </video>
 
-  <!-- Controles opcionales -->
-  <a class="left carousel-control" href="#heroCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
-  </a>
-  <a class="right carousel-control" href="#heroCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Siguiente</span>
-  </a>
-</div>
+        <!-- Fallback background -->
+        <div class="video-fallback"></div>
+
+        <!-- Overlay -->
+        <div class="video-overlay"></div>
+
+        <!-- Contenido principal -->
+        <div class="hero-content">
+            <h1>Micropigmentación Profesional</h1>
+            <p>Resultados realistas, sin cirugía y adaptados a tu caso.</p>
+            <a href="#content" class="cta-button">Descubre Más</a>
+        </div>
+
+        <!-- Controles del video -->
+        <div class="video-controls">
+            <button class="control-btn" id="fitModeBtn" title="Cambiar ajuste de video">🔄</button>
+            <button class="control-btn" id="playPauseBtn" title="Reproducir/Pausar">⏸️</button>
+            <button class="control-btn" id="muteBtn" title="Silenciar/Activar sonido">🔊</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section" id="content">
+            <h1>Recupera tu imagen y tu seguridad con micropigmentación capilar en Buenos Aires</h1>
+            <h2>¿Por qué elegir la micropigmentación capilar?</h2>
+            <p>La micropigmentación capilar es una técnica innovadora y no invasiva que simula la apariencia de folículos pilosos naturales, creando la ilusión de densidad capilar en áreas con pérdida de cabello.</p>
+            <p>Nuestros servicios incluyen:</p>
+            <p><strong>• Técnica SMP avanzada:</strong> Resultados naturales y duraderos</p>
+            <p><strong>• Profesionales certificados:</strong> Especialistas con años de experiencia</p>
+            <p><strong>• Pigmentos de calidad premium:</strong> Colores que se adaptan perfectamente a tu tono natural</p>
+            <p><strong>• Consulta personalizada:</strong> Diseñamos el tratamiento ideal para tu caso específico</p>
+            <p><strong>• Ubicación privilegiada:</strong> En el corazón de Buenos Aires con fácil acceso</p>
+            <p><strong>• Garantía de satisfacción:</strong> Respaldamos nuestro trabajo con resultados comprobados</p>
+        </section>
+    </main>
 
 
     <!-- Sobre mí -->
@@ -153,7 +170,7 @@
     
         <!-- Texto a la derecha -->
         <div class="sobre-mi-texto">
-          <h1>Micropigmentación capilar en Buenos Aires con resultados naturales</h1>
+          <h2>Micropigmentación capilar en Buenos Aires con resultados naturales</h2>
           <p>
             Soy Rafael, especialista en micropigmentación capilar en Buenos Aires, y mi misión es ayudarte a recuperar tu imagen con una técnica realista, sin patrones artificiales, adaptada completamente a tu caso.
           </p>

@@ -151,8 +151,14 @@ fieldset[disabled] .btn-xl.active {
   border-color: transparent;
 }
 .navbar-custom .navbar-brand {
+  display: flex;
+  align-items: center;
   color: #fed136;
   font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+}
+.brand-logo {
+    height: 4em;
+    margin-left: 60px;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -226,37 +232,252 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 
-/* Hero carrusel full height */
-.carousel,
-.carousel-inner,
-.carousel-inner .item {
-  height: 100vh; /* pantalla completa */
+/* Contenedor del video header */
+.video-header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-slide {
-  position: relative;
-  text-align: center;
+/* Video de fondo */
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    object-fit: cover;
+    object-position: center center; /* Centra el punto focal del video */
 }
 
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center; /* muestra toda la imagen sin recortar */
-  background-color: #000; /* opcional: bordes negros si sobra espacio */
+/* Clases alternativas para diferentes ajustes del video */
+.video-bg.fit-contain {
+    object-fit: contain; /* Muestra el video completo, puede haber barras negras */
 }
 
-.slide-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 12px 24px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  font-size: 16px;
-  border-radius: 5px;
+.video-bg.fit-cover {
+    object-fit: cover; /* Llena toda la pantalla, puede cortar partes del video */
+}
+
+.video-bg.fit-fill {
+    object-fit: fill; /* Estira el video para llenar toda la pantalla */
+}
+
+/* Overlay oscuro sobre el video */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Contenido sobre el video */
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+/* H1 del header (sobre el video) */
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #fed136;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out 0.6s both;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.cta-button:hover {
+    background: #fec503;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    color: white;
+}
+
+/* Controles del video */
+.video-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Contenido adicional */
+.content-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* H1 del main (contenido principal) */
+.content-section h1 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+    line-height: 1.2;
+}
+
+.content-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #444;
+}
+
+.content-section p {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fallback para dispositivos que no soportan video */
+.video-fallback {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -2;
+}
+
+/* Media Queries - Responsive */
+@media (max-width: 768px) {
+    /* H1 del header */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    /* H1 del main */
+    .content-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .content-section p {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .video-header {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 480px) {
+    /* H1 del header */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    /* H1 del main */
+    .content-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .content-section p {
+        font-size: 1.1rem;
+    }
+
+    .video-controls {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .control-btn {
+        padding: 8px;
+    }
+}
+
+/* Para pantallas muy altas (móviles en horizontal) */
+@media (max-height: 500px) {
+    .video-header {
+        height: 100vh;
+    }
+
+    /* H1 del header */
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
 }
 
 /* Sobre mi*/
@@ -291,7 +512,7 @@ fieldset[disabled] .btn-xl.active {
   flex: 1 1 55%;
 }
 
-.sobre-mi-texto h1 {
+.sobre-mi-texto h2 {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 16px;
