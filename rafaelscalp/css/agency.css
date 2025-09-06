@@ -322,6 +322,7 @@ fieldset[disabled] .btn-xl.active {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     color: white;
+    text-decoration: none;
 }
 
 /* Controles del video */
@@ -726,6 +727,27 @@ fieldset[disabled] .btn-xl.active {
 #portfolio * {
   z-index: 2;
 }
+
+/* Boton instagram */
+
+.btn-instagram {
+  display: inline-block;
+  background-color: #222222;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-instagram:hover {
+  background-color: #fec503;
+  color: #fff;
+  text-decoration: none;
+}
+
 
 @media (min-width: 767px) {
   #portfolio .portfolio-item {
