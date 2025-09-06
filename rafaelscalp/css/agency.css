@@ -847,7 +847,7 @@ fieldset[disabled] .btn-xl.active {
     top: 15px;
     left: 15px;
     background: rgba(0, 0, 0, 0.8);
-    color: white;
+    color: black;
     padding: 8px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -857,11 +857,11 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .label.before {
-    background: #e74c3c;
+    background: white;
 }
 
 .label.after {
-    background: #27ae60;
+    background: white;
 }
 
 .nav-button {
