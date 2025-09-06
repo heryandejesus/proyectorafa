@@ -602,6 +602,13 @@ fieldset[disabled] .btn-xl.active {
   border-radius: 5px;
 }
 
+.boton:hover {
+  background-color: #f2c500;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.9s ease;
+}
+
 /* Imágenes */
 .imagenes-capacitacion {
   display: grid;
@@ -747,7 +754,6 @@ fieldset[disabled] .btn-xl.active {
   color: #fff;
   text-decoration: none;
 }
-
 
 @media (min-width: 767px) {
   #portfolio .portfolio-item {

@@ -259,3 +259,11 @@ function setVH() {
 setVH();
 window.addEventListener('resize', setVH);
 window.addEventListener('orientationchange', setVH);
+
+// boton de enlace a instagram en procedimientos
+
+document.querySelectorAll('.btn-instagram').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.blur(); // 👈 quita el focus después del click
+    });
+  });
