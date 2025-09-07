@@ -874,10 +874,11 @@ fieldset[disabled] .btn-xl.active {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    object-position: top;
 }
 
 .before-after:hover img {
-    transform: scale(1.05);
+    transform: scale(1.10);
 }
 
 .label {
@@ -888,18 +889,18 @@ fieldset[disabled] .btn-xl.active {
     color: black;
     padding: 8px 12px;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.70rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .label.before {
-    background: white;
+    background: transparent;
 }
 
 .label.after {
-    background: white;
+    background: transparent;
 }
 
 .nav-button {
