@@ -654,7 +654,7 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 
-/* Portfolio Grid */
+/* Procedimientos y Testimonios */
 #portfolio .portfolio-item {
   margin: 0 0 30px;
   right: 0;
@@ -667,6 +667,7 @@ fieldset[disabled] .btn-xl.active {
   margin: 0 auto;
   height: 300px;
   overflow: hidden;
+  background-color: #fff;
 }
 
 #portfolio .portfolio-item .portfolio-link img {
@@ -733,6 +734,15 @@ fieldset[disabled] .btn-xl.active {
 
 #portfolio * {
   z-index: 2;
+}
+
+#portfolio.testimonios-section .portfolio-item .portfolio-link #testimonio1,
+#portfolio.testimonios-section .portfolio-item .portfolio-link #testimonio2,
+#portfolio.testimonios-section .portfolio-item .portfolio-link #testimonio3 {
+  width: 100% !important;
+  height: auto !important; /* Ajusta la altura según la proporción */
+  object-fit: contain !important; /* Muestra la imagen completa */
+  object-position: center;
 }
 
 /* Boton instagram */
