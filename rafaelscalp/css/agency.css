@@ -745,6 +745,10 @@ fieldset[disabled] .btn-xl.active {
   object-position: center;
 }
 
+#portfolio .portfolio-item .portfolio-link img[src*="linea-frontal.jpg"] {
+  object-position: center 0%;
+}
+
 /* Boton instagram */
 
 .btn-instagram {
@@ -1006,60 +1010,97 @@ fieldset[disabled] .btn-xl.active {
 
 /* Contact Section */
 section#contact {
-  background-color: #222222;
   background-image: url('../img/map-image.png');
   background-position: center;
   background-repeat: no-repeat;
+  padding: 60px 0;
 }
+
 section#contact .section-heading {
   color: white;
 }
+
+section#contact .section-subheading {
+  color: #ccc;
+}
+
 section#contact .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
-section#contact .form-group input,
-section#contact .form-group textarea {
-  padding: 20px;
+
+section#contact .form-control {
+  padding: 15px;
+  border-radius: 6px;
 }
-section#contact .form-group input.form-control {
-  height: auto;
+
+section#contact textarea.form-control {
+  height: 200px;
 }
-section#contact .form-group textarea.form-control {
-  height: 236px;
-}
+
 section#contact .form-control:focus {
   border-color: #fed136;
   box-shadow: none;
 }
-section#contact ::-webkit-input-placeholder {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #1a1919;
+
+section#contact .btn {
+  background: #fed136;
+  color: #222;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 30px;
 }
-section#contact :-moz-placeholder {
-  /* Firefox 18- */
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #1b1b1b;
+
+section#contact .btn:hover {
+  background: #e6b800;
 }
-section#contact ::-moz-placeholder {
-  /* Firefox 19+ */
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #1b1b1b;
+
+section#contact .social-icons a {
+  display: inline-block;
+  font-size: 24px;
+  color: #fff;
+  margin: 0 8px;
+  transition: color 0.3s;
 }
-section#contact :-ms-input-placeholder {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #eeeeee;
+
+section#contact .social-icons a:hover {
+  color: #fed136;
 }
-section#contact .text-danger {
-  color: #e74c3c;
+
+section#contact .map-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
 }
+
+section#contact .text-white {
+  color: white !important;
+}
+
+section#contact .text-warning {
+  color: white !important;
+}
+
+section#contact .text-warning:hover {
+  color: #fec503 !important;
+}
+
+/* Placeholder visibles siempre */
+::placeholder {
+  color: #888 !important;  /* gris claro */
+  opacity: 1;              /* algunos navegadores bajan la opacidad */
+}
+
+:-ms-input-placeholder { /* IE 10-11 */
+  color: #888 !important;
+}
+
+::-ms-input-placeholder { /* Edge */
+  color: #888 !important;
+}
+
+
+
+/* Footer */
 footer {
   padding: 25px 0;
   text-align: center;

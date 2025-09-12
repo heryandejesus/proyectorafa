@@ -209,19 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Control de sonido (mute/unmute)
-    muteBtn.addEventListener('click', function() {
-        if (video.muted) {
-            video.muted = false;
-            muteBtn.textContent = '🔊';
-            muteBtn.title = 'Silenciar';
-        } else {
-            video.muted = true;
-            muteBtn.textContent = '🔇';
-            muteBtn.title = 'Activar sonido';
-        }
-    });
-
     // Manejo de errores del video
     video.addEventListener('error', function() {
         console.log('Error cargando el video, mostrando fallback');
