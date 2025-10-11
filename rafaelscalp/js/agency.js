@@ -33,138 +33,100 @@
 })(jQuery); // End of use strict
 
 // JavaScript para el slider de la galería
-class GallerySlider {
-    constructor() {
-        this.track = document.getElementById('galleryTrack');
-        this.cards = document.querySelectorAll('.treatment-card');
-        this.prevBtn = document.getElementById('prevBtn');
-        this.nextBtn = document.getElementById('nextBtn');
-        this.dotsContainer = document.getElementById('dotsContainer');
-        
-        this.currentIndex = 0;
-        this.cardsToShow = this.getCardsToShow();
-        this.maxIndex = Math.max(0, this.cards.length - this.cardsToShow);
-        
-        this.init();
-        this.setupEventListeners();
-    }
+// SCRIPT PARA GALERÍA DE RESULTADOS
+(function() {
+    'use strict';
 
-    getCardsToShow() {
-        if (window.innerWidth <= 480) return 1;
-        if (window.innerWidth <= 768) return 2;
-        return 3;
-    }
+    const sliderTrack = document.getElementById('galeriaSliderTrack');
+    const prevBtn = document.getElementById('galeriaPrevBtn');
+    const nextBtn = document.getElementById('galeriaNextBtn');
+    const dotsContainer = document.getElementById('galeriaDotsContainer');
+    const slides = document.querySelectorAll('.galeria-slide');
 
-    init() {
-        this.createDots();
-        this.updateSlider();
-        this.updateButtons();
-    }
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoPlayInterval;
 
-    createDots() {
-        this.dotsContainer.innerHTML = '';
-        const totalDots = this.maxIndex + 1;
-        
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('span');
-            dot.className = 'dot';
-            dot.addEventListener('click', () => this.goToSlide(i));
-            this.dotsContainer.appendChild(dot);
+    // Crear dots dinámicamente
+    function createDots() {
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('galeria-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
         }
     }
 
-    updateSlider() {
-        const cardWidth = 100 / this.cardsToShow;
-        const translateX = -(this.currentIndex * cardWidth);
-        this.track.style.transform = `translateX(${translateX}%)`;
-        
-        this.updateDots();
-    }
+    const dots = () => document.querySelectorAll('.galeria-dot');
 
-    updateDots() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentIndex);
+    // Actualizar el slider
+    function updateSlider() {
+        sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots().forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
     }
 
-    updateButtons() {
-        this.prevBtn.style.opacity = this.currentIndex === 0 ? '0.5' : '1';
-        this.nextBtn.style.opacity = this.currentIndex >= this.maxIndex ? '0.5' : '1';
+    // Ir a un slide específico
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+        resetAutoPlay();
     }
 
-    goToSlide(index) {
-        this.currentIndex = Math.max(0, Math.min(index, this.maxIndex));
-        this.updateSlider();
-        this.updateButtons();
+    // Slide siguiente
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
     }
 
-    nextSlide() {
-        if (this.currentIndex < this.maxIndex) {
-            this.currentIndex++;
-            this.updateSlider();
-            this.updateButtons();
-        }
+    // Slide anterior
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
     }
 
-    prevSlide() {
-        if (this.currentIndex > 0) {
-            this.currentIndex--;
-            this.updateSlider();
-            this.updateButtons();
-        }
+    // Auto-play
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000);
     }
 
-    setupEventListeners() {
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
 
-        // Touch/swipe support
-        let startX = 0;
-        let endX = 0;
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
 
-        this.track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
+    // Event listeners para los botones
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
         });
 
-        this.track.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    this.nextSlide();
-                } else {
-                    this.prevSlide();
-                }
-            }
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') this.prevSlide();
-            if (e.key === 'ArrowRight') this.nextSlide();
-        });
-
-        // Resize handler
-        window.addEventListener('resize', () => {
-            const newCardsToShow = this.getCardsToShow();
-            if (newCardsToShow !== this.cardsToShow) {
-                this.cardsToShow = newCardsToShow;
-                this.maxIndex = Math.max(0, this.cards.length - this.cardsToShow);
-                this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
-                this.createDots();
-                this.updateSlider();
-                this.updateButtons();
-            }
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoPlay();
         });
     }
-}
 
-// Initialize the gallery when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new GallerySlider();
-});
+    // Pausar auto-play cuando el usuario interactúa
+    if (sliderTrack) {
+        sliderTrack.addEventListener('mouseenter', stopAutoPlay);
+        sliderTrack.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Inicializar
+    if (slides.length > 0) {
+        createDots();
+        startAutoPlay();
+    }
+
+})();
 
 // JavaScript para controles del video
 document.addEventListener('DOMContentLoaded', function() {
@@ -251,6 +213,6 @@ window.addEventListener('orientationchange', setVH);
 
 document.querySelectorAll('.btn-instagram').forEach(btn => {
     btn.addEventListener('click', function() {
-      this.blur(); // 👈 quita el focus después del click
+      this.blur(); 
     });
   });
