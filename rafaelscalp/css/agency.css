@@ -859,7 +859,7 @@ fieldset[disabled] .btn-xl.active {
 
 .galeria-slide-label {
     position: absolute;
-    top: 20px;
+    bottom: 20px;
     left: 10px;
     background: #fed136;
     color: white;
