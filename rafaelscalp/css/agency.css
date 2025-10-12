@@ -960,10 +960,11 @@ fieldset[disabled] .btn-xl.active {
     }
 
     .galeria-slide-label {
-        padding: 8px 15px;
-        font-size: 0.9em;
-        top: 15px;
-        left: 15px;
+        padding: 5px 10px;
+        font-size: 0.7em;
+        bottom: 8px;
+        left: 8px;
+        border-radius: 12px;
     }
 
     .galeria-slider-btn {
