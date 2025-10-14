@@ -763,6 +763,10 @@ fieldset[disabled] .btn-xl.active {
   text-decoration: none;
 }
 
+.section-heading {
+  font-size: 35px !important; 
+}
+
 @media (min-width: 767px) {
   #portfolio .portfolio-item {
     margin: 0 0 30px;
@@ -785,6 +789,7 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 
+
 /* Galeria */
 .galeria-section {
     padding: 80px 20px;
@@ -805,7 +810,7 @@ fieldset[disabled] .btn-xl.active {
 
 .galeria-subtitulo {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: #222222;
     margin-bottom: 40px;
     font-size: 1.2em;
 }
@@ -872,7 +877,7 @@ fieldset[disabled] .btn-xl.active {
 
 .galeria-slide-title {
     text-align: center;
-    color: white;
+    color: #222222;
     margin-top: 20px;
     font-size: 1.5em;
     font-weight: 600;
